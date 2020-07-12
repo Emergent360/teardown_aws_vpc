@@ -1,6 +1,5 @@
 ---
 # tasks file for teardown_aws_vpc
----
 - name: Get the VPC ID for {{ ec2_name_prefix }}-vpc
   ec2_vpc_net_info:
     filters:
