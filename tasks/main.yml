@@ -70,16 +70,16 @@
   with_items: "{{ route_table_facts.route_tables }}"
   when: item.associations == []
 
-- name: Delete ssh key pair for {{ ec2_name_prefix }}-vpc
-  ec2_key:
-    name: "{{ ec2_name_prefix }}-key"
-    region: "{{ ec2_region }}"
-    state: absent
+#- name: Delete ssh key pair for {{ ec2_name_prefix }}-vpc
+#  ec2_key:
+#    name: "{{ ec2_name_prefix }}-key"
+#    region: "{{ ec2_region }}"
+#    state: absent
 
-- name: Delete private key file
-  file:
-    path: "/var/lib/awx/.ssh/{{ ec2_name_prefix }}-private.pem"
-    state: absent
+#- name: Delete private key file
+#  file:
+#    path: "/var/lib/awx/.ssh/{{ ec2_name_prefix }}-private.pem"
+#    state: absent
 
 - name: Delete VPC {{ ec2_name_prefix }}-vpc
   ec2_vpc_net:
