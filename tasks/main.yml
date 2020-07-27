@@ -81,6 +81,9 @@
     lookup: id
     state: absent
   with_items: "{{ route_table_facts.route_tables }}"
+  register: rtb_deleted
+  until: rtb_deleted is not failed
+  retries: 5
 
 - name: Delete VPC {{ ec2_name_prefix }}-vpc
   ec2_vpc_net:
