@@ -39,11 +39,22 @@
   retries: 50
   when: vpc_net_facts.vpcs|length > 0
 
+- name: Get cidrs for subnets
+  ec2_vpc_subnet_info:
+    filters:
+      vpc-id: "{{ ec2_vpc_id }}"
+  register: subnet_info
+
+- set_fact:
+    subnet_cidrs: "{{ subnet_info.subnets|map(attribute='cidr')|list }}"
+
 - name: Delete subnet for {{ ec2_name_prefix }}-vpc
   ec2_vpc_subnet:
     region: "{{ ec2_region }}"
     vpc_id: "{{ ec2_vpc_id }}"
+    cidr: "{{ item }}"
     state: absent
+  loop: "{{ subnet_cidrs }}"
 
 - name: Delete vpc internet gateway for {{ ec2_name_prefix }}-vpc
   ec2_vpc_igw:
