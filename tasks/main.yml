@@ -46,7 +46,9 @@
       vpc-id: "{{ ec2_vpc_id }}"
   register: subnet_info
 
-- debug: msg: "{{ subnet_info }}"
+- debug: 
+    msg: "{{ subnet_info }}"
+
 - set_fact:
     subnet_cidrs: "{{ subnet_info.subnets|map(attribute='cidr')|list }}"
 
