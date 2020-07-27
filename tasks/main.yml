@@ -63,24 +63,24 @@
     vpc_id: "{{ ec2_vpc_id }}"
     state: absent
 
-- name: Get route table info for {{ ec2_name_prefix }}-vpc
-  ec2_vpc_route_table_info:
-    region: "{{ ec2_region }}"
-    filters:
-      vpc_id: "{{ ec2_vpc_id }}"
-  register: route_table_facts
+#- name: Get route table info for {{ ec2_name_prefix }}-vpc
+#  ec2_vpc_route_table_info:
+#    region: "{{ ec2_region }}"
+#    filters:
+#      vpc_id: "{{ ec2_vpc_id }}"
+#  register: route_table_facts
 
-- name: Delete route table for {{ ec2_name_prefix }}-vpc
-  ec2_vpc_route_table:
-    region: "{{ ec2_region }}"
-    vpc_id: "{{ ec2_vpc_id }}"
-    route_table_id: "{{ item.id }}"
-    lookup: id
-    state: absent
-  with_items: "{{ route_table_facts.route_tables }}"
-  register: rtb_deleted
-  until: rtb_deleted is not failed
-  retries: 5
+#- name: Delete route table for {{ ec2_name_prefix }}-vpc
+#  ec2_vpc_route_table:
+#    region: "{{ ec2_region }}"
+#    vpc_id: "{{ ec2_vpc_id }}"
+#    route_table_id: "{{ item.id }}"
+#    lookup: id
+#    state: absent
+#  with_items: "{{ route_table_facts.route_tables }}"
+#  register: rtb_deleted
+#  until: rtb_deleted is not failed
+#  retries: 5
 
 - name: Delete VPC {{ ec2_name_prefix }}-vpc
   ec2_vpc_net:
