@@ -68,7 +68,7 @@
     lookup: id
     state: absent
   with_items: "{{ route_table_facts.route_tables }}"
-  when: item.associations == []
+#  when: item.associations == []
 
 #- name: Delete ssh key pair for {{ ec2_name_prefix }}-vpc
 #  ec2_key:
