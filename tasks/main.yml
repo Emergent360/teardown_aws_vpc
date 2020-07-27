@@ -43,7 +43,7 @@
   ec2_vpc_subnet_info:
     region: "{{ ec2_region }}"
     filters:
-      vpc_id: "{{ ec2_vpc_id }}"
+      vpc-id: "{{ ec2_vpc_id }}"
   register: subnet_info
 
 - set_fact:
