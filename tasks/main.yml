@@ -56,10 +56,10 @@
   ec2_vpc_subnet:
     region: "{{ ec2_region }}"
     vpc_id: "{{ ec2_vpc_id }}"
-    az: "{{ ec2_az }}"
+#    az: "{{ ec2_az }}"
     cidr: "{{ ec2_subnet }}"
     state: absent
-#  loop: "{{ subnet_cidrs }}"
+  loop: "{{ subnet_cidrs }}"
 
 - name: Delete vpc internet gateway for {{ ec2_name_prefix }}-vpc
   ec2_vpc_igw:
