@@ -49,13 +49,17 @@
 - set_fact:
     subnet_cidrs: "{{ subnet_info.subnets|map(attribute='cidr_block')|list }}"
 
+- debug:
+    msg: "{{ subnet_cidrs }}"
+
 - name: Delete subnet for {{ ec2_name_prefix }}-vpc
   ec2_vpc_subnet:
     region: "{{ ec2_region }}"
     vpc_id: "{{ ec2_vpc_id }}"
-    cidr: "{{ item }}"
+    az: "{{ ec2_az }}"
+    cidr: "{{ ec2_subnet }}"
     state: absent
-  loop: "{{ subnet_cidrs }}"
+#  loop: "{{ subnet_cidrs }}"
 
 - name: Delete vpc internet gateway for {{ ec2_name_prefix }}-vpc
   ec2_vpc_igw:
