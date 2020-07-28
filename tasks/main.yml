@@ -56,7 +56,6 @@
   ec2_vpc_subnet:
     region: "{{ ec2_region }}"
     vpc_id: "{{ ec2_vpc_id }}"
-#    az: "{{ ec2_az }}"
     cidr: "{{ item }}"
     state: absent
   loop: "{{ subnet_cidrs }}"
