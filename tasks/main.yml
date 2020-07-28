@@ -36,7 +36,7 @@
     state: absent
   register: delete_sg
   until: delete_sg is not failed
-  retries: 50
+  retries: 5
   when: vpc_net_facts.vpcs|length > 0
 
 - name: Get cidrs for subnets
