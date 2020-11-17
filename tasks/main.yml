@@ -78,7 +78,7 @@
     lookup: id
     state: absent
   with_items: "{{ route_table_facts.route_tables }}"
-#  when: item.associations == []
+  when: item.associations == []
   register: rtb_deleted
   until: rtb_deleted is not failed
   retries: 5
