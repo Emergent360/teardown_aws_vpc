@@ -78,7 +78,7 @@
     lookup: id
     state: absent
   with_items: "{{ route_table_facts.route_tables }}"
-  when: item.associations == []
+#  when: item.associations == []
   register: rtb_deleted
   until: rtb_deleted is not failed
   retries: 5
@@ -86,7 +86,7 @@
 - name: Delete VPC {{ ec2_name_prefix }}-vpc
   ec2_vpc_net:
     name: "{{ ec2_name_prefix }}-vpc"
-    cidr_block: "{{ ec2_subnet }}"
+    cidr_block: "{{ ec2_cidr_prefix[ec2_name_prefix] }}.0.0/16"
     region: "{{ ec2_region }}"
     state: absent
   register: vpc_deleted
