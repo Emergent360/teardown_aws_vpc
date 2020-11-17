@@ -49,9 +49,6 @@
 - set_fact:
     subnet_cidrs: "{{ subnet_info.subnets|map(attribute='cidr_block')|list }}"
 
-- debug:
-    msg: "{{ subnet_cidrs }}"
-
 - name: Delete subnet for {{ ec2_name_prefix }}-vpc
   ec2_vpc_subnet:
     region: "{{ ec2_region }}"
