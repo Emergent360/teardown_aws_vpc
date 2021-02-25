@@ -28,7 +28,7 @@
   register: result_ec2_destroy
   when: all_vpc_instances.instances
 
-- name: Delete security group {{ ec2_name_prefix }}-sg
+- name: Delete security group {{ ec2_name_prefix }}-Public-SG
   ec2_group:
     name: "{{ ec2_name_prefix }}-sg"
     region: "{{ ec2_region }}"
