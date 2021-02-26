@@ -30,7 +30,7 @@
 
 - name: Delete security group {{ ec2_name_prefix }}-Public-SG
   ec2_group:
-    name: "{{ ec2_name_prefix }}-sg"
+    name: "{{ ec2_name_prefix }}-Public-SG"
     region: "{{ ec2_region }}"
     vpc_id: "{{ ec2_vpc_id }}"
     state: absent
